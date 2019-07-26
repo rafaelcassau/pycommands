@@ -1,9 +1,10 @@
-import pytest
 from commands.base import BaseCommand
+
+import pytest
 
 
 def test_base_command_execute_should_raise_not_implemented_error():
-    with pytest.raises(NotImplementedError) as excinfo:
+    with pytest.raises(NotImplementedError):
         BaseCommand().execute()
 
 
@@ -12,7 +13,7 @@ def test_base_command__validate_should_return_none():
 
 
 def test_base_command_build_should_raise_not_implemented_error():
-    with pytest.raises(NotImplementedError) as excinfo:
+    with pytest.raises(NotImplementedError):
         BaseCommand().build()
 
 
