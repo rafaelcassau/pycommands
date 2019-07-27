@@ -2,7 +2,6 @@ from .exceptions import CommandException
 
 
 class Invoker:
-
     def __init__(self):
         self._commands = []
         self._executed_commands = []
@@ -14,7 +13,7 @@ class Invoker:
             for command in commands:
                 command.execute()
                 self._executed_commands.append(command)
-        except CommandException as ex:
+        except CommandException:
             self.undo()
 
     def undo(self):

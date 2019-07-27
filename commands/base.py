@@ -1,5 +1,4 @@
 class BaseCommand:
-
     def __init__(self):
         self.command = None
         self.undo_command = None
