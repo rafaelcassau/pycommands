@@ -1,5 +1,5 @@
 from commands.base import BaseCommand
-from commands.exceptions import InvalidCommandParameter
+from commands.exceptions import CommandException
 
 
 class Command1(BaseCommand):
@@ -20,4 +20,4 @@ class Command2(BaseCommand):
 
 class InvalidCommand(BaseCommand):
     def build(self):
-        raise InvalidCommandParameter()
+        raise CommandException()

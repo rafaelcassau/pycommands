@@ -50,7 +50,9 @@ class BaseCommand:
             response = subprocess.run(
                 command, capture_output=True, check=True, timeout=self.timeout
             )
-            logger.success(f"success: {response.stdout}")
+            if response.stdout:
+                logger.info(f"success: {response.stdout}")
+
         except CalledProcessError as error:
             logger.error(f"returned error: {error.stderr}")
         except TimeoutExpired as error:
