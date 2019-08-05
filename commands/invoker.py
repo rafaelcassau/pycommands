@@ -7,14 +7,15 @@ class Invoker:
         self._executed_commands = []
         self._undo_commands_executed = []
 
-    def execute(self, commands):
+    def execute(self, commands, *, run_undo=False):
         self._commands = commands
         try:
             for command in commands:
                 command.execute()
                 self._executed_commands.append(command)
         except CommandException:
-            self.undo()
+            if run_undo:
+                self.undo()
 
     def undo(self):
         undo_list = reversed(self._executed_commands)
