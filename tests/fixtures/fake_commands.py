@@ -4,18 +4,18 @@ from commands.exceptions import InvalidCommandParameter
 
 class Command1(BaseCommand):
     def build(self):
-        return "command 1"
+        return "touch content.txt"
 
     def build_undo(self):
-        return "undo command 1"
+        return "rm content.txt"
 
 
 class Command2(BaseCommand):
     def build(self):
-        return "command 2"
+        return "mv content.txt content-replaced.txt"
 
     def build_undo(self):
-        return "undo command 2"
+        return "mv content-replaced.txt content.txt"
 
 
 class InvalidCommand(BaseCommand):
