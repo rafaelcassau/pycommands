@@ -63,7 +63,7 @@ def test_invoker_execute_should_be_undo_automatically():
     commands_to_execute = [Command1(), Command2(), InvalidCommand()]
     invoker = Invoker()
 
-    invoker.execute(commands_to_execute)
+    invoker.execute(commands_to_execute, run_undo=True)
 
     assert invoker._executed_commands[0].command == "command 1"
     assert invoker._executed_commands[1].command == "command 2"
@@ -74,3 +74,19 @@ def test_invoker_execute_should_be_undo_automatically():
     assert len(invoker._commands) == 3
     assert len(invoker._executed_commands) == 2
     assert len(invoker._undo_commands_executed) == 2
+
+
+def test_invoker_execute_shouldnt_be_undo():
+    commands_to_execute = [Command1(), Command2(), InvalidCommand()]
+    invoker = Invoker()
+
+    invoker.execute(commands_to_execute, run_undo=False)
+
+    assert invoker._executed_commands[0].command == "command 1"
+    assert invoker._executed_commands[1].command == "command 2"
+
+    assert invoker._undo_commands_executed == []
+
+    assert len(invoker._commands) == 3
+    assert len(invoker._executed_commands) == 2
+    assert len(invoker._undo_commands_executed) == 0
