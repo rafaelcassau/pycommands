@@ -13,6 +13,7 @@ pip install pycommands
 ```
 
 ## Basic usage
+
 #### Definition of commands
 ```python
 from commands.base import BaseCommand
@@ -86,3 +87,28 @@ Starting Invalid command
 undo command 2
 undo command 1
 ```
+## How to contribute
+
+We welcome contributions of many forms, for example:
+- Code (by submitting pull requests)
+- Documentation improvements
+- Bug reports and feature requests
+
+## Setting up for local development
+
+We use pipenv to manage dependencies, so make sure you have it installed.
+```bash
+pip install --user pipenv
+```
+
+Install pre-commit hooks:
+```bash
+pre-commit install
+```
+
+Run testes by evoking pytest:
+```
+pytest
+```
+
+That's it! You're ready from development
