@@ -97,8 +97,15 @@ We welcome contributions of many forms, for example:
 ## Setting up for local development
 
 We use pipenv to manage dependencies, so make sure you have it installed.
+
+Creating environment
 ```bash
-pip install --user pipenv
+/<project-path>/pipenv install --python=3
+```
+
+Activing environment
+```bash
+/<project-path>/pipenv shell
 ```
 
 Install pre-commit hooks:
@@ -106,7 +113,7 @@ Install pre-commit hooks:
 pre-commit install
 ```
 
-Run testes by evoking pytest:
+Run tests by evoking pytest:
 ```
 pytest
 ```
