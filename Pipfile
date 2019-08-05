@@ -8,6 +8,7 @@ ipdb = "*"
 pytest = "*"
 ipython = "*"
 pre-commit = "*"
+codecov = "*"
 
 [packages]
 pytest-cov = "*"
