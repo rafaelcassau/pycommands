@@ -31,6 +31,20 @@ jobs:
                     - ./venv
                 key: v1-dependencies={{ checksum "Pipfile.lock" }}
 
+            - restore_cache:
+                name: Restoring hooks cache
+                key: v1-hooks-{{ checksum ".pre-commit-config.yaml" }}
+
+            - run:
+                name: linters
+                command: SKIP=no-commit-to-branch pipenv run pre-commit run -a -v
+
+            - save_cache:
+                name: Saving hooks cache
+                paths:
+                    - "~/.cache/pre-commit"
+                key: v1-hooks-{{ checksum ".pre-commit-config.yaml" }}
+
             - run:
                 name: Run tests
                 command: |
