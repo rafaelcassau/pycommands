@@ -80,7 +80,7 @@ invoker.execute([
     InvalidCommand(),
 ], run_undo=True)
 
-#output
+# output
 command 1
 command 2
 Starting Invalid command
