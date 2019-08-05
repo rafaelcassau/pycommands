@@ -16,7 +16,7 @@ jobs:
                 name: Restoring dependencies cache
                 keys:
                 - v1-dependencies-{{ checksum "Pipfile.lock" }}
-            
+
             - run:
                 name: Install system dependencies
                 command: sudo pip install pipenv
