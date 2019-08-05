@@ -1,6 +1,7 @@
 # pycommands
-|CI-badge| |cov-badge|
-
+[![CircleCI](https://circleci.com/gh/rafaelcassau/pycommands.svg?style=svg)](https://circleci.com/gh/rafaelcassau/pycommands)
+[![Codecov](https://codecov.io/gh/rafaelcassau/pycommands/branch/master/graph/badge.svg)](https://codecov.io/gh/rafaelcassau/pycommands)
+  
 Handle a list of commands that should be executed easily and with undo support.
 
 # How to use
@@ -119,9 +120,3 @@ pytest
 ```
 
 That's it! You're ready from development
-
-.. |CI-badge| image:: https://circleci.com/gh/rafaelcassau/pycommands.svg?style=svg
-    :target: https://circleci.com/gh/rafaelcassau/pycommands
-
-.. |cov-badge| image:: https://codecov.io/gh/rafaelcassau/pycommands/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/rafaelcassau/example-python
