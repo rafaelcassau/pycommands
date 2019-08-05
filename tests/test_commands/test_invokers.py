@@ -26,7 +26,9 @@ def test_invoker_execute_should_execute_commands_in_giver_order():
     invoker.execute(commands_to_execute)
 
     assert invoker._executed_commands[0].command == "touch content.txt"
-    assert invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    assert (
+        invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    )
 
 
 def test_invoker_has_been_success_should_be_true():
@@ -51,11 +53,16 @@ def test_invoker_undo_should_run_two_commands_in_reversed_order():
     invoker.execute(commands_to_execute)
 
     assert invoker._executed_commands[0].command == "touch content.txt"
-    assert invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    assert (
+        invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    )
 
     invoker.undo()
 
-    assert invoker._undo_commands_executed[0].undo_command == "mv content-replaced.txt content.txt"
+    assert (
+        invoker._undo_commands_executed[0].undo_command
+        == "mv content-replaced.txt content.txt"
+    )
     assert invoker._undo_commands_executed[1].undo_command == "rm content.txt"
 
 
@@ -66,9 +73,14 @@ def test_invoker_execute_should_be_undo_automatically():
     invoker.execute(commands_to_execute, run_undo=True)
 
     assert invoker._executed_commands[0].command == "touch content.txt"
-    assert invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    assert (
+        invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    )
 
-    assert invoker._undo_commands_executed[0].undo_command == "mv content-replaced.txt content.txt"
+    assert (
+        invoker._undo_commands_executed[0].undo_command
+        == "mv content-replaced.txt content.txt"
+    )
     assert invoker._undo_commands_executed[1].undo_command == "rm content.txt"
 
     assert len(invoker._commands) == 3
@@ -83,7 +95,9 @@ def test_invoker_execute_shouldnt_be_undo():
     invoker.execute(commands_to_execute, run_undo=False)
 
     assert invoker._executed_commands[0].command == "touch content.txt"
-    assert invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    assert (
+        invoker._executed_commands[1].command == "mv content.txt content-replaced.txt"
+    )
 
     assert invoker._undo_commands_executed == []
 

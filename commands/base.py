@@ -1,8 +1,7 @@
-import sys
 import logging
 import subprocess
+import sys
 from subprocess import CalledProcessError, TimeoutExpired
-
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -49,10 +48,7 @@ class BaseCommand:
     def _call(self, command):
         try:
             response = subprocess.run(
-                command,
-                capture_output=True,
-                check=True,
-                timeout=self.timeout,
+                command, capture_output=True, check=True, timeout=self.timeout
             )
             logger.success(f"success: {response.stdout}")
         except CalledProcessError as error:
