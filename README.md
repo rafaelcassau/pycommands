@@ -19,30 +19,28 @@ pip install pycommands
 ```python
 from commands.base import BaseCommand
 from commands.exceptions import CommandException
+from commands.invoker import Invoker
+
 
 class Command1(BaseCommand):
     def build(self):
-        print("command 1")
+        return "touch content.txt"
 
     def build_undo(self):
-        print("undo command 1")
+        return "rm content.txt"
 
 
 class Command2(BaseCommand):
     def build(self):
-        print("command 2")
+        return "mv content.txt content-replaced.txt"
 
     def build_undo(self):
-        print("undo command 2")
+        return "mv content-replaced.txt content.txt"
 
 
 class InvalidCommand(BaseCommand):
     def build(self):
-        print("Starting Invalid command")
-        try:
-            assert 1 == 2
-        except Exception as error:
-            raise CommandException(error)
+        raise CommandException()
 ```
 
 #### Simple default execution with success commands
@@ -59,16 +57,18 @@ invoker.execute([
 ], run_undo=False)
 
 # output
-command 1
-command 2
+running command: touch content.txt
+running command: mv content.txt content-replaced.txt
+
 
 # If a invoker.undo() is called then all commands undo operation will be done in the LIFO order.
 
 invoker.undo()
 
 # output
-command 2
-command 1
+running undo command: mv content-replaced.txt content.txt
+running undo command: rm content.txt
+
 
 # If a invoker.execute() is called with run_undo as True, then the undo operation will be done always
 # that a command raise CommandException
@@ -82,11 +82,12 @@ invoker.execute([
 ], run_undo=True)
 
 # output
-command 1
-command 2
-Starting Invalid command
-undo command 2
-undo command 1
+running command: touch content.txt
+running command: mv content.txt content-replaced.txt
+running command: touch content.txt
+running command: mv content.txt content-replaced.txt
+running undo command: mv content-replaced.txt content.txt
+running undo command: rm content.txt
 ```
 ## How to contribute
 
