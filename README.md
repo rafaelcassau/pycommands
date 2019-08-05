@@ -1,7 +1,7 @@
 # pycommands
 [![CircleCI](https://circleci.com/gh/rafaelcassau/pycommands.svg?style=svg)](https://circleci.com/gh/rafaelcassau/pycommands)
 [![Codecov](https://codecov.io/gh/rafaelcassau/pycommands/branch/master/graph/badge.svg)](https://codecov.io/gh/rafaelcassau/pycommands)
-  
+
 Handle a list of commands that should be executed easily and with undo support.
 
 # How to use
