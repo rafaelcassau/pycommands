@@ -12,7 +12,6 @@ codecov = "*"
 
 [packages]
 pytest-cov = "*"
-test = "*"
 ipython = "*"
 click = "*"
 
