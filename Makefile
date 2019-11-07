@@ -22,7 +22,7 @@ setuptools:
 twine:
 	python -m pip install -U --upgrade twine
 
-build: test setuptools
+build: lint test setuptools
 	python setup.py sdist bdist_wheel
 
 release: clean build twine
