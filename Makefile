@@ -1,6 +1,6 @@
 .PHONY: docs
 
-clean: clean-eggs clean-build clean-docs
+clean: clean-eggs clean-build
 	@find . -iname '*.pyc' -delete
 	@find . -iname '*.pyo' -delete
 	@find . -iname '*~' -delete
@@ -16,8 +16,20 @@ clean-build:
 	@rm -fr dist/
 	@rm -fr *.egg-info
 
-clean-docs:
-	@rm -fr docs/build/
+setuptools:
+	python -m pip install -U --upgrade setuptools wheel
+
+twine:
+	python -m pip install -U --upgrade twine
+
+build: test setuptools
+	python setup.py sdist bdist_wheel
+
+release: clean build twine
+	git rev-parse --abbrev-ref HEAD | grep '^master$$'
+	git tag `python setup.py --version`
+	git push origin `python setup.py --version`
+	python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/* --verbose
 
 lint:
 	pre-commit run -a
