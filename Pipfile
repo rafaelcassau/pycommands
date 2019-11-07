@@ -9,6 +9,7 @@ pytest = "*"
 ipython = "*"
 pre-commit = "*"
 codecov = "*"
+isort = "*"
 
 [packages]
 pytest-cov = "*"
